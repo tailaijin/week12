@@ -16,12 +16,17 @@ mv mongodb-osx-x86_64-3.4.0-rc2 mongodb
 export PATH=/Users/yourusername/mongodb/bin:$PATH
 
 mkdir data
+
 cd data
+
 mkdir db
 
 Go to /Users/yourusername
+
 sudo chown -R `id -u` /data/db
+
 Go to /Users/yourusername/mongodb/bin
+
 run mongodb
 
 
