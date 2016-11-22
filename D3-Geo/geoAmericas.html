@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+    <head>
+      <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    </head>
+    <body>
+    <div id="viz"></div>
+    <select id="projection-dropdown">
+      <option value="d3.geo.albersUsa">d3.geo.albersUsa</option>
+      <option value="d3.geo.albers">d3.geo.albers</option>
+      <option value="d3.geo.azimuthalEqualArea">d3.geo.azimuthalEqualArea</option>
+      <option value="d3.geo.azimuthalEquidistant">d3.geo.azimuthalEquidistant</option>
+      <option value="d3.geo.conicConformal">d3.geo.conicConformal</option>
+      <option value="d3.geo.conicEqualArea">d3.geo.conicEqualArea</option>
+      <option value="d3.geo.conicEquidistant">d3.geo.conicEquidistant</option>
+      <option value="d3.geo.equirectangular">d3.geo.equirectangular</option>
+      <option value="d3.geo.mercator">d3.geo.mercator</option>
+      <option value="d3.geo.orthographic">d3.geo.orthographic</option>
+      <option value="d3.geo.stereographic">d3.geo.stereographic</option>
+      <option value="d3.geo.transverseMercator">d3.geo.transverseMercator</option>
+    </select>
+      <script>
+      
+      ///////////////////////////////////////////////////////////////////////////////////
+      //                                                                               //
+      //     Event Listener and Event Listener Function                                //
+      //                                                                               //
+      ///////////////////////////////////////////////////////////////////////////////////
+        
+        var projectionType,
+            projectionObject = {};
+        
+        // Drop Down Change Event Listener Function
+        function dropDownChange() {
+          
+          // Get new value from the html select drop down
+          currentValue = this.value;
+          
+          // Define object that has the projection types
+          var projectionObject  = {
+            "d3.geo.albers": d3.geo.albers(),
+            "d3.geo.albersUsa": d3.geo.albersUsa(),
+            "d3.geo.azimuthalEqualArea": d3.geo.azimuthalEqualArea(),
+            "d3.geo.azimuthalEquidistant": d3.geo.azimuthalEquidistant(),
+            "d3.geo.conicConformal": d3.geo.conicConformal(),
+            "d3.geo.conicEqualArea": d3.geo.conicEqualArea(),
+            "d3.geo.conicEquidistant": d3.geo.conicEquidistant(),
+            "d3.geo.equirectangular": d3.geo.equirectangular(),
+            "d3.geo.mercator": d3.geo.mercator(),
+            "d3.geo.orthographic": d3.geo.orthographic(),
+            "d3.geo.stereographic": d3.geo.stereographic(),
+            "d3.geo.transverseMercator": d3.geo.transverseMercator(),
+          }
+          
+          // Use Object to set the projectionType variable
+          var projectionType = projectionObject[currentValue];
+          
+          // Redraw the projection
+          draw(projectionType);
+        }
+        
+        // Event Listener for Projection Drop Down
+        d3.select("#projection-dropdown").on("change", dropDownChange);
+
+
+
+      ///////////////////////////////////////////////////////////////////////////////////
+      //                                                                               //
+      //     Zoom Listener, Zoom Listener Function and Zoom Reset                      //
+      //                                                                               //
+      ///////////////////////////////////////////////////////////////////////////////////
+
+      // Define Zoom Function Event Listener
+      function zoomFunction() { 
+        d3.selectAll("path")
+          .attr("transform", 
+              "translate(" + d3.event.translate
+              + ") scale (" + d3.event.scale + ")");
+      }
+
+      // Define Zoom Behavior
+      var zoom = d3.behavior.zoom()
+          .scaleExtent([.2, 10])
+          .on("zoom", zoomFunction);
+
+      // Define Zoom Reset
+      function zoomReset() {
+        zoom.scale(1);
+        zoom.translate([0,0]);
+      }
+
+
+
+      ///////////////////////////////////////////////////////////////////////////////////
+      //                                                                               //
+      //     Visualization Creation                                                    //
+      //                                                                               //
+      ///////////////////////////////////////////////////////////////////////////////////
+        
+      // Variables
+      var width = 930,
+          height = 400,
+          geoPath = d3.geo.path();
+        
+      // Redefine the geoPath
+      geoPath.projection(projectionType)
+
+
+      // SVG Viewport
+      var svgContainer = d3.select("#viz").append("svg")
+          .attr("width", width)
+          .attr("height", height)
+          .style("border", "2px solid steelblue")
+          .call(zoom);
+
+      // Function to Draw Originally and then ReDraw the chart
+      function draw(projection) {
+        
+        /* 
+         * Reset the Drawing by deleting old paths and reseting zoom level
+         */  
+        
+        // Delete prior paths
+        d3.select("svg").selectAll("path").remove();
+        
+        //  Reset Zoom
+        zoomReset();
+
+        /* 
+         * redefine geoPath and Do 3 separate AJAX calls for Mex, Can and USA Paths
+         */  
+        
+        // Define geoPath Variable;
+        var geoPath = d3.geo.path().projection(projection);
+        
+        // Mexico AJAX Call
+        d3.json('MEX.geo.json', function(error, data) {
+
+          // Define Data
+          var mexFeatureCollection = data;
+                  
+          // Create Mex Map SVG Path
+          var mexSVG = svgContainer
+            .append("path")
+              .attr("d", geoPath(mexFeatureCollection))
+              .style("fill", "green");
+
+        });
+
+        // Canada AJAX Call
+        d3.json('CAN.geo.json', function(error, data) {
+
+          // Define Data
+          var canFeatureCollection = data;
+        
+          // Create Mex Map SVG Path
+          var canSVG = svgContainer
+            .append("path")
+              .attr("d", geoPath(canFeatureCollection))
+              .style("fill", "red");
+
+        });
+      
+        // USA AJAX Call
+        d3.json('USA.geo.json', function(error, data) {
+
+          // Define Data
+          var usaFeatureCollection = data;
+        
+          // Create Mex Map SVG Path
+          var usaSVG = svgContainer
+            .append("path")
+              .attr("d", geoPath(usaFeatureCollection))
+              .style("fill", "navy");
+
+        });
+  
+      }
+      
+      // Original Drawing
+      draw(d3.geo.albersUsa());
+
+    </script>
+    </body>
+</html>
