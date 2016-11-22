@@ -7,9 +7,12 @@ Download mongodb, go to terminal where mongo is installed, login as administrato
 ----------------------------------------------------------------------
 cd to /Users/yourusername/
 
-curl -O https://fastdl.mongodb.org/osx/mongodb-osx-x86_64-3.4.0-rc2.tgz
-tar -zxvf mongodb-osx-x86_64-3.4.0-rc2.tgz
-mv mongodb-osx-x86_64-3.4.0-rc2 mongodb
+curl -O https://fastdl.mongodb.org/osx/mongodb-osx-x86_64-3.4.0-rc2.tgz 
+
+tar -zxvf mongodb-osx-x86_64-3.4.0-rc2.tgz 
+
+mv mongodb-osx-x86_64-3.4.0-rc2 mongodb 
+
 export PATH=/Users/yourusername/mongodb/bin:$PATH
 
 mkdir data
