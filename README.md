@@ -5,6 +5,8 @@ Windows
 Download mongodb, go to terminal where mongo is installed, login as administrator, start mongod 
 
 ----------------------------------------------------------------------
+Follow the official link - works well - https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
+or use the below link
 Follow the link to install using brew or manually - http://treehouse.github.io/installation-guides/mac/mongo-mac.html
 -------------------------------------------------------------------
 cd to /Users/yourusername/
