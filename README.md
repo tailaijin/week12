@@ -4,10 +4,11 @@ MYSQL - MAC
 ------------------------------------------
 http://dev.mysql.com/downloads/mysql/ - Download the DMG Archive and install 5.7
 
-Follow the link below to install
+Follow the link below for instructions to install mysql on mac
+
 http://dev.mysql.com/doc/refman/5.7/en/osx-installation-pkg.html
 
-Download the MySql workbench from http://dev.mysql.com/downloads/workbench and follow the instructions.
+Download the MySql workbench from http://dev.mysql.com/downloads/workbench and follow the instructions to install.
 -------------------------------------------------------------------------------------
 
 MYSQL - Windows - Download the MySQL Installer MSI and follow the directions
@@ -18,7 +19,7 @@ Windows
 Download mongodb, go to terminal where mongo is installed, login as administrator, start mongod 
 
 ----------------------------------------------------------------------
-Follow the official link - works well -
+Follow the official link - works well to install mongodb -
 
 https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
 
