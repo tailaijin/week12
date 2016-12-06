@@ -16,7 +16,7 @@ angular.module('charts')
                     }
                 },
                 resolve: {
-                    
+
                 }
             })
             .state('columnchart', {
@@ -32,7 +32,7 @@ angular.module('charts')
                     }
                 },
                 resolve: {
-                    
+
                 }
             })
 
@@ -49,7 +49,7 @@ angular.module('charts')
                     }
                 },
                 resolve: {
-                    
+
                 }
             })
 
@@ -66,11 +66,11 @@ angular.module('charts')
                     }
                 },
                 resolve: {
-                    
+
                 }
             })
 
-          
+
             .state('linechartyql', {
              parent: 'site',
              url: '/linechartyql',
@@ -84,7 +84,7 @@ angular.module('charts')
                     }
                 },
                 resolve: {
-                    
+
                 }
             })
 
@@ -101,7 +101,7 @@ angular.module('charts')
                     }
                 },
                 resolve: {
-                    
+
                 }
             })
 
@@ -118,9 +118,61 @@ angular.module('charts')
                     }
                 },
                 resolve: {
-                    
+
                 }
             })
-          
-            ;
+
+          //High Charts related routes.
+          .state('highchart', {
+           parent: 'site',
+           url: '/highchart',
+           data: {
+             roles: []
+           },
+           views: {
+                  'content@': {
+                      templateUrl: 'charts/highcharts/highChart1.html',
+                      controller: 'HighChartController'
+                  }
+              },
+              resolve: {
+
+              }
+          })
+
+          .state('highchartline', {
+           parent: 'site',
+           url: '/highchartline',
+           data: {
+             roles: []
+           },
+           views: {
+                  'content@': {
+                      templateUrl: 'charts/highcharts/highChart2.html',
+                      controller: 'HighChartLineController'
+                  }
+              },
+              resolve: {
+
+              }
+          })
+
+          .state('highchartarea', {
+           parent: 'site',
+           url: '/highchartarea',
+           data: {
+             roles: []
+           },
+           views: {
+                  'content@': {
+                      templateUrl: 'charts/highcharts/highChart3.html',
+                      controller: 'HighChartAreaController'
+                  }
+              },
+              resolve: {
+
+              }
+          })
+
+          ;
     });
