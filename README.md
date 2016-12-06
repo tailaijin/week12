@@ -5,6 +5,8 @@ Windows
 Download mongodb, go to terminal where mongo is installed, login as administrator, start mongod 
 
 ----------------------------------------------------------------------
+Follow the link to install using brew or manually - http://treehouse.github.io/installation-guides/mac/mongo-mac.html
+-------------------------------------------------------------------
 cd to /Users/yourusername/
 
 curl -O https://fastdl.mongodb.org/osx/mongodb-osx-x86_64-3.4.0-rc2.tgz 
@@ -49,3 +51,9 @@ Download the MySql workbench from http://dev.mysql.com/downloads/workbench and f
 -------------------------------------------------------------------------------------
 
 MYSQL - Windows - Download the MySQL Installer MSI and follow the directions
+---------------------------------------------------------------------------------------------------
+Start the node server
+
+npm init
+npm install express mongoose morgan body-parser method-override mysql
+node server.js
