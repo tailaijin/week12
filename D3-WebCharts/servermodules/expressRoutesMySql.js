@@ -1,6 +1,73 @@
 var mysql      = require('mysql');
 module.exports = function(app) {
+ //HighCharts api calls to database
+ app.get('/api/highchartarea', function(req,res) {
+ var connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'root',
+    password : 'admin',
+    database : 'charts'
+  });
+ connection.connect();
+console.log('coming here to get high chart area');
+connection.query('SELECT * from areachartstockprice',
+      function(err, rows, fields) {
+        if (!err)
+          console.log('The solution is: ', rows);
+       else
+          console.log('Error while performing Query.', err);
+       res.send(rows);
 
+});
+connection.end();
+
+});
+
+app.get('/api/highchartline', function(req,res) {
+ var connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'root',
+    password : 'admin',
+    database : 'charts'
+  });
+ connection.connect();
+console.log('coming here to get high chart line');
+connection.query('SELECT * from linechartsingle',
+      function(err, rows, fields) {
+        if (!err)
+          console.log('The solution is: ', rows);
+       else
+          console.log('Error while performing Query.', err);
+       res.send(rows);
+
+});
+connection.end();
+
+});
+
+app.get('/api/highchartcolumn', function(req,res) {
+ var connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'root',
+    password : 'admin',
+    database : 'charts'
+  });
+ connection.connect();
+console.log('coming here to get high chart column');
+connection.query('SELECT * from collegesbystate',
+      function(err, rows, fields) {
+        if (!err)
+          console.log('The solution is: ', rows);
+       else
+          console.log('Error while performing Query.', err);
+       res.send(rows);
+
+});
+connection.end();
+
+});
+
+ // D3 related api calls to database
  app.get('/api/columnchart', function(req,res) {
 	 var connection = mysql.createConnection({
 	 		host     : 'localhost',
