@@ -53,7 +53,10 @@ Download the MySql workbench from http://dev.mysql.com/downloads/workbench and f
 MYSQL - Windows - Download the MySQL Installer MSI and follow the directions
 ---------------------------------------------------------------------------------------------------
 Start the node server
+-----------------------------
 
 npm init
+
 npm install express mongoose morgan body-parser method-override mysql
+
 node server.js
